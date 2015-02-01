@@ -59,3 +59,18 @@ co(doSomething)
   .then(onFulfilled, onRejected)
   .catch(catchErr);
 
+let p1 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 500, 'one');
+});
+
+let p2 = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 100, 'two');
+});
+
+Promise.race([p1, p2])
+.then(function (val) {
+  console.log('who win ? =>', val);
+});
+
+
+
