@@ -1,0 +1,30 @@
+{
+  "name": "understandPromise",
+  "version": "0.0.1",
+  "description": "Understand promise generator and co",
+  "main": "index.js",
+  "dependencies": {
+    "co": "^4.1.0",
+    "gulp": "^3.8.10",
+    "superagent": "^0.21.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nukr/understandPromiseGeneratorCo.git"
+  },
+  "keywords": [
+    "promise",
+    "generator",
+    "co"
+  ],
+  "author": "nukr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nukr/understandPromiseGeneratorCo/issues"
+  },
+  "homepage": "https://github.com/nukr/understandPromiseGeneratorCo"
+}
