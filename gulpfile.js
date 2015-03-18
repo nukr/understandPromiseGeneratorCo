@@ -1,12 +1,12 @@
-var gulp = require('gulp');
-var cp = require('child_process');
+var gulp = require("gulp");
+var cp = require("child_process");
 
-gulp.task('default', ['6to5-node', 'watch'])
+gulp.task("default", ["babel-node", "watch"]);
 
-gulp.task('watch', function () {
-  gulp.watch('./index.js', ['6to5-node'])
-})
+gulp.task("watch", function () {
+  gulp.watch("./index.js", ["babel-node"]);
+});
 
-gulp.task('6to5-node', function () {
-  cp.spawn('6to5-node', ['index.js'], {stdio: 'inherit'})
-})
+gulp.task("babel-node", function () {
+  cp.spawn("babel-node", ["index.js"], {stdio: "inherit"});
+});

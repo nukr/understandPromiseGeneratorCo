@@ -1,37 +1,38 @@
-const sa = require('superagent');
-const fs = require('fs');
-const co = require('co');
+const sa = require("superagent");
+const fs = require("fs");
+const co = require("co");
 
 let moretext = (n, limit) => {
-  let url = 'http://more.handlino.com/sentences.json';
-  if (n && typeof n === 'number') url = `${url}?n=${n}`;
+  let url = "http://more.handlino.com/sentences.json";
+  if (n && typeof n === "number") url = `${url}?n=${n}`;
 
   return new Promise(function (resolve, reject) {
     sa.get(url)
     .end(function (err, res) {
+      if (err) throw new Error(err);
       if (res.statusCode === 200) {
-        resolve(res.text)
+        resolve(res.text);
       } else {
         reject(res.statusCode);
       }
-    })
+    });
   });
 };
 
 let promiseWriteToFile = (text) => {
   return new Promise(function (resolve, rejected) {
-    fs.writeFile('test.txt', text, function (err) {
-      if (err) throw Error('error');
-      resolve(text)
+    fs.writeFile("test.txt", text, function (err) {
+      if (err) throw new Error("error");
+      resolve(text);
     });
-  })
+  });
 };
 
 let promiseReadFromFile = (fileName) => {
   return new Promise(function (resolve, rejected) {
-    fs.readFile(fileName, {encoding: 'utf8'}, function (err, data) {
-      if (err) throw Error('error');
-      resolve(data)
+    fs.readFile(fileName, {encoding: "utf8"}, function (err, data) {
+      if (err) throw new Error("error");
+      resolve(data);
     });
   });
 };
@@ -39,37 +40,39 @@ let promiseReadFromFile = (fileName) => {
 let doSomething = function *() {
   let lorem = yield moretext(1);
   yield promiseWriteToFile(lorem);
-  let text = yield promiseReadFromFile('./test.txt');
+  let text = yield promiseReadFromFile("./test.txt");
   return text;
-}
+};
 
 let onFulfilled = (value) => {
-  console.log('we cool!', value);
-}
+  console.log("we cool!", value);
+};
 
 let onRejected = (reason) => {
-  console.log('not cool', reason);
-}
+  console.log("not cool", reason);
+};
 
 let catchErr = (err) => {
-  console.log('fatal error');
-}
+  if (err) throw new Error("error");
+
+  console.log("fatal error");
+};
 
 co(doSomething)
   .then(onFulfilled, onRejected)
   .catch(catchErr);
 
 let p1 = new Promise(function (resolve, reject) {
-  setTimeout(resolve, 500, 'one');
+  setTimeout(resolve, 500, "one");
 });
 
 let p2 = new Promise(function (resolve, reject) {
-  setTimeout(resolve, 100, 'two');
+  setTimeout(resolve, 100, "two");
 });
 
 Promise.race([p1, p2])
 .then(function (val) {
-  console.log('who win ? =>', val);
+  console.log("who win ? =>", val);
 });
 
 
