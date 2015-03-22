@@ -6,6 +6,7 @@
   "dependencies": {
     "co": "^4.1.0",
     "gulp": "^3.8.10",
+    "koa-parse-restapi": "0.0.10",
     "superagent": "^0.21.0"
   },
   "devDependencies": {},

@@ -8,5 +8,5 @@ gulp.task("watch", function () {
 });
 
 gulp.task("babel-node", function () {
-  cp.spawn("babel-node", ["index.js"], {stdio: "inherit"});
+  cp.spawn("babel-node", ["-r", "index.js"], {stdio: "inherit"});
 });
